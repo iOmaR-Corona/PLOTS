@@ -1,0 +1,79 @@
+
+#################SCATTERPLOT#############################
+def difraction(data,color, inicial = 5):
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+    x = data['2theta'],
+                 y = data['Intensity'],line = dict(color=color, width=1)
+    ))
+    fig.update_layout(font_size=15,xaxis_title = '$\LARGE2\mathcal{  \\theta(º)}$',yaxis_title = 'Intensidad (u.a.)',
+    template = 'simple_white', yaxis = dict(range = [0,data['Intensity'].max()+1000], mirror = 'allticks'
+    ), xaxis = dict(range=[inicial,70], mirror = 'allticks'),yaxis_showticklabels=False,
+    )
+    return fig
+    
+fig.show()
+
+#################CONTOURPLOT#############################
+fig = go.Figure(data =
+        go.Contour(
+        z=df["ddg"],
+        x=df["x"], # horizontal axis
+        y=df["y"],colorbar=dict(
+            title='$ \mu Gal$', titlefont =dict(size=14)
+            )))
+fig.update_layout(xaxis_title = "Este (m)", yaxis_title = "Norte (m)",width=800,  height=800, title='HOla')
+fig.show()
+
+
+#################SCATTERPLOT#############################
+VARIOUS
+import plotly.graph_objects as go
+import plotly.express as px
+fig = go.Figure()
+fig.add_trace(go.Scatter(x = np.linspace(0,2*np.pi,100),
+                 y = dff, mode='markers',name='Diferenciación adelantada'))
+fig.add_trace(go.Scatter(x = np.linspace(0,2*np.pi,100),
+                 y = dfe,name='Derivada exacta: cos(x)'))
+fig.update_layout(template = 'plotly_white',xaxis_title="x",
+    yaxis_title="y",)
+fig.show()
+
+
+#################SURFACE#############################
+fig = go.Figure(data=[go.Surface(z=sol, x=x, y=t)])
+fig.update_layout(title='Solución numérica',title_x=0.5, autosize=True,
+                  margin=dict(l=65, r=50, b=65, t=90))
+fig.show()
+
+#################CONTOURPLOT#############################
+LABELS
+fig = go.Figure(data=
+    go.Contour(
+        z=T,x=y,y=y,colorscale='jet',
+        line_width=1,contours=dict(coloring ='heatmap',
+            showlabels = True, # show labels on contours
+            labelfont = dict( # label font properties
+                size = 12,color = 'white',),
+            start=T.min(),
+            end=T.max(),
+            size=n/50
+    )))
+
+fig.update_layout(xaxis_title = "x (km)", yaxis_title = "z (km)",width=800,
+    height=800,font_size=19,template = 'plotly_white')
+
+fig.show()
+
+#################ISOSURFACE#############################
+
+fig = go.Figure(data =
+    go.Isosurface(
+        x=X.flatten(),y=Y.flatten(),z=Z.flatten(),value=T.flatten(),colorscale='jet',
+        surface=dict(count=8, fill=0.7, pattern='odd'),
+    caps=dict(x_show=True, y_show=True,z_show = False),))
+
+fig.update_layout(xaxis_title = "x (km)", yaxis_title = "z (km)",width=800,
+    height=800,font_size=19,template = 'plotly_white')
+
+fig.show()
